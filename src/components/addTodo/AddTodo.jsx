@@ -1,21 +1,27 @@
 
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
-import { addTodo } from '../../slices/todoSlice';
+import { useState } from 'react'
+// import { useDispatch } from 'react-redux';
+// import { addTodo } from '../../slices/todoSlice';
 
-function AddTodo() {
+function AddTodo({AddTodoFunProp}) {
 
 const [inputText , setInputText] = useState('');
-const dispatch = useDispatch()
+// const dispatch = useDispatch()
 
-const todoHandler = (e) => {
+
+  const todoHandler = (e) => {
     e.preventDefault();
-    dispatch(addTodo({todoText : inputText}))
-    setInputText('')
+    if(inputText !== ''){
+      AddTodoFunProp({todoText : inputText})
+      // dispatch(addTodo({todoText : inputText}))
+      setInputText('')
+    }
 
 }
 
+
   return (
+    <div className="flex justify-center items-center " >  
     <form onSubmit={todoHandler} className="space-x-3 mt-12 justify-center items-center">
         <input className="bg-gray-800 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
          type="text"
@@ -26,6 +32,7 @@ const todoHandler = (e) => {
             Add
          </button>
     </form>
+    </div>
   )
 }
 

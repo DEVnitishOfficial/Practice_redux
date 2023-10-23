@@ -24,6 +24,7 @@ const todoSlice = createSlice({
         },
         deleteTodo : (state,action) => {
             let payloadTodo = action.payload.todo;
+            console.log('payloadTodo',payloadTodo)
             return state.filter((currentTodo) => currentTodo.id !== payloadTodo.id);
         }
     }
